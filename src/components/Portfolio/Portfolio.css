@@ -1,0 +1,477 @@
+.portfolio {
+  background: #000000;
+  padding: 3.5rem 0 4rem;
+}
+
+.portfolio__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.portfolio__header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.portfolio__title {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #ffffff;
+  margin: 0 0 0.8rem;
+}
+
+.portfolio__subtitle {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.7;
+}
+
+/* Tabs */
+.portfolio__tabs {
+  display: flex;
+  gap: 0;
+  background: #0d0d1a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 0.4rem;
+  margin: 0 auto 2.5rem;
+  width: fit-content;
+}
+
+.portfolio__tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.6rem;
+  border-radius: 7px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.portfolio__tab:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.portfolio__tab--active {
+  background: linear-gradient(135deg, #053594, #1544A3, #1951C3);
+  color: #ffffff;
+}
+
+.portfolio__tab-icon {
+  display: flex;
+  align-items: center;
+}
+
+/* Tab content animation — wrapper sits OUTSIDE BorderGlow so
+   its transform doesn't conflict with the card's edge-glow transform.
+   Uses a keyframe animation (not IntersectionObserver) so the active
+   tab's cards always show; remounts via key when the tab changes,
+   which replays the animation. */
+.portfolio__content {
+  /* plain wrapper around the active tab's content */
+}
+
+@keyframes tabReveal {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal-tab {
+  animation: tabReveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Project grid */
+.portfolio__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.project-card {
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.project-card:hover {
+  border-color: transparent;
+}
+
+/* cert card content inner wrapper */
+.cert-card {
+  transition: border-color 0.2s ease;
+}
+
+.cert-card__content {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.2rem 1.5rem;
+}
+
+/* tech card content inner wrapper */
+.tech-card {
+  transition: border-color 0.2s ease;
+}
+
+.tech-card__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.2rem 1rem;
+}
+
+.project-card__thumb {
+  width: calc(100% - 2.4rem);
+  margin: 1.2rem 1.2rem 0;
+  height: 280px;
+  overflow: hidden;
+  background: #000;
+  border-radius: 10px;
+}
+
+.project-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-card__img {
+  transform: scale(1.03);
+}
+
+.project-card__body {
+  padding: 1.2rem 1.4rem;
+}
+
+.project-card__title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.5rem;
+}
+
+.project-card__desc {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.6;
+  margin: 0 0 1rem;
+}
+
+.project-card__link {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: color 0.2s ease, border-color 0.2s ease;
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 0.35rem 0.9rem;
+  border-radius: 6px;
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.project-card__link:hover {
+  color: #ffffff;
+  border-color: rgba(255,255,255,0.4);
+}
+
+/* Certificates */
+.portfolio__certs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.cert-card {
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.cert-card__btn {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.cert-card__img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.cert-card__btn:hover .cert-card__img {
+  transform: scale(1.05);
+}
+
+.cert-card__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 1rem 1.2rem;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.cert-card__btn:hover .cert-card__overlay,
+.cert-card__btn:focus-visible .cert-card__overlay {
+  opacity: 1;
+}
+
+.cert-card__title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+}
+
+.cert-card__hint {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin-top: 0.25rem;
+}
+
+/* Certificate lightbox */
+.cert-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.cert-lightbox__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.55);
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  z-index: 2;
+}
+
+.cert-lightbox__close:hover {
+  background: rgba(59, 130, 246, 0.7);
+}
+
+.cert-lightbox__box {
+  position: relative;
+  max-width: min(1100px, 95vw);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cert-lightbox__img {
+  max-width: 100%;
+  max-height: 84vh;
+  object-fit: contain;
+  display: block;
+  border-radius: 10px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+.cert-lightbox__caption {
+  margin-top: 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+}
+
+/* Tech Stack */
+.portfolio__tech {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 1rem;
+}
+
+.tech-card {
+  background: #0d0d1a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 1.2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  transition: border-color 0.2s ease;
+}
+
+.tech-card:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.tech-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #dbeafe;
+  transition: all 0.3s ease;
+}
+
+.tech-card__name {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+/* Project detail modal */
+.project-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+}
+
+.project-modal__box {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  max-height: 86vh;
+  overflow-y: auto;
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+.project-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.project-modal__close:hover {
+  background: rgba(59, 130, 246, 0.7);
+}
+
+.project-modal__header {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+}
+
+.project-modal__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-modal__header-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgb(0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.55) 40%,
+    rgba(0, 0, 0, 0.15) 70%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  pointer-events: none;
+}
+
+.project-modal__title {
+  position: absolute;
+  left: 1.6rem;
+  right: 1.6rem;
+  bottom: 1.2rem;
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.project-modal__body {
+  padding: 1.6rem 1.6rem 2rem;
+}
+
+.project-modal__section {
+  margin-bottom: 1.3rem;
+}
+
+.project-modal__section:last-child {
+  margin-bottom: 0;
+}
+
+.project-modal__section-heading {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #60a5fa;
+  margin: 0 0 0.4rem;
+}
+
+.project-modal__text {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.7;
+  margin: 0;
+}

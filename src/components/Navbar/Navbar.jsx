@@ -1,0 +1,73 @@
+import { useState, useEffect } from 'react';
+import './Navbar.css';
+
+const Navbar = () => {
+  const [activeSection, setActiveSection] = useState('home');
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+  
+      const sections = ['home', 'about', 'portfolio', 'process', 'contact'];
+      const offset = 120;
+  
+      let currentSection = 'home';
+  
+      for (const id of sections) {
+        const el = document.getElementById(id);
+  
+        if (el) {
+          const sectionTop = el.getBoundingClientRect().top;
+  
+          if (sectionTop <= offset) {
+            currentSection = id;
+          }
+        }
+      }
+  
+      setActiveSection(currentSection);
+    };
+  
+    window.addEventListener('scroll', handleScroll);
+  
+    handleScroll();
+  
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
+      <div className="navbar__inner">
+        <div className="navbar__logo">Zidni Nurfauzi Mahen</div>
+        <ul className="navbar__links">
+          {[
+            { id: 'home', label: 'Home' },
+            { id: 'about', label: 'About' },
+            { id: 'portfolio', label: 'Portofolio' },
+            { id: 'process', label: 'Process' },
+            { id: 'contact', label: 'Contact' },
+          ].map(({ id, label }) => (
+            <li key={id}>
+              <button
+                className={`navbar__link ${activeSection === id ? 'navbar__link--active' : ''}`}
+                onClick={() => scrollTo(id)}
+              >
+                {label}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;

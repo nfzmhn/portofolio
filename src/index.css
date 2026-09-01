@@ -1,0 +1,125 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #000000;
+  color: #ffffff;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2563eb;
+  border-radius: 4px;
+}
+
+/* ═══════════════════════════════════════
+   SCROLL REVEAL ANIMATION SYSTEM
+   All animations use .fade-up, .fade-left,
+   .fade-right, .fade-in as base + .is-visible
+════════════════════════════════════════ */
+
+/* Base hidden state */
+.fade-up    { opacity: 0; transform: translateY(40px); }
+.fade-left  { opacity: 0; transform: translateX(-48px); }
+.fade-right { opacity: 0; transform: translateX(48px); }
+.fade-scale { opacity: 0; transform: scale(0.92); }
+.fade-in    { opacity: 0; }
+
+.fade-up,
+.fade-left,
+.fade-right,
+.fade-scale,
+.fade-in {
+  /* Smooth, slightly springy easing for a more natural reveal */
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+/* Visible state */
+.fade-up.is-visible,
+.fade-left.is-visible,
+.fade-right.is-visible,
+.fade-scale.is-visible,
+.fade-in.is-visible {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+/* Delay helpers */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+.delay-6 { transition-delay: 0.6s; }
+
+/* ── Hero enter animations (run once on page load) ── */
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.hero-anim-title {
+  animation: heroFadeUp 0.8s ease both;
+  animation-delay: 0.2s;
+}
+
+.hero-anim-sub {
+  animation: heroFadeUp 0.7s ease both;
+  animation-delay: 0.5s;
+}
+
+.hero-anim-desc {
+  animation: heroFadeUp 0.7s ease both;
+  animation-delay: 0.7s;
+}
+
+.hero-anim-bg {
+  animation: heroFadeIn 1.2s ease both;
+  animation-delay: 0.1s;
+}
+

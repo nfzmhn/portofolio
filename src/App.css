@@ -1,0 +1,44 @@
+.app {
+  min-height: 100vh;
+  background: #000;
+}
+
+/* Subtle blur overlay at the bottom of the viewport, fading upward.
+   Creates a soft, dreamy sheen when scrolling near the bottom. */
+.scroll-blur {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 38vh;
+  z-index: 50;
+  pointer-events: none;
+
+  backdrop-filter: blur(7px) saturate(110%);
+  -webkit-backdrop-filter: blur(7px) saturate(110%);
+
+  background: linear-gradient(
+    to top,
+    rgba(3, 0, 20, 0.30) 0%,
+    rgba(3, 0, 20, 0.14) 35%,
+    rgba(3, 0, 20, 0) 100%
+  );
+
+  mask-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.55) 30%,
+    rgba(0, 0, 0, 0.18) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  -webkit-mask-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.55) 30%,
+    rgba(0, 0, 0, 0.18) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  transition: opacity 0.4s ease;
+}
