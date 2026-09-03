@@ -12,8 +12,14 @@ import {
   FaGitAlt,
   FaFigma,
   FaPython,
-  FaBootstrap
+  FaBootstrap,
 } from 'react-icons/fa';
+
+import {
+  SiSupabase,
+  SiLaravel,
+  SiMysql,
+} from "react-icons/si";
 
 // Project previews from /public/project
 const PROJECTS = [
@@ -30,7 +36,7 @@ const PROJECTS = [
   },
   {
     id: 3,
-    title: 'Front End & UI/UX Sistem Satu Data Mahasiswa',
+    title: 'Website Sistem Satu Data Mahasiswa',
     description:
       'A web-based information system designed to manage and organize data efficiently for administrative needs.',
     previewImage: '/project/project 3-sisadam.png',
@@ -54,7 +60,7 @@ const PROJECTS = [
     id: 5,
     title: 'Portofolio',
     description:
-      'A personal portfolio website showcasing projects, skills, and professional journey in a clean and modern design.',
+      'Personal portfolio website showcasing projects, skills, and professional journey in a clean and modern design.',
     previewImage: '/project/project 5-portofolio.png',
     problem:
       'Presenting projects, skills, and experiences across different platforms can make it difficult to showcase a professional profile in a clear and engaging way. A centralized portfolio was needed to bring these elements together in one accessible and visually appealing platform.',
@@ -65,7 +71,7 @@ const PROJECTS = [
     id: 6,
     title: 'Computer Vision model For Pothole Detection',
     description:
-      'A computer vision project exploring image processing and object detection using modern machine learning techniques.',
+      'Computer vision project exploring image processing and object detection using modern machine learning techniques.',
     previewImage: '/project/project 6-computer vision.png',
     problem:
       'Potholes are a common road damage problem that can affect driving safety and road conditions. Manual inspection of road damage can be time-consuming and may not provide consistent results, creating a need for an automated approach to identify potholes efficiently from road images.',
@@ -76,7 +82,7 @@ const PROJECTS = [
     id: 7,
     title: 'Android App',
     description:
-      'A native Android application designed to provide a smooth mobile experience with intuitive navigation and modern UI.',
+      'Native Android application designed to provide a smooth mobile experience with intuitive navigation and modern UI.',
     previewImage: '/project/project 7-android.png',
     problem:
       'People often forget to bring important items when leaving home, traveling, or attending activities. Unlike a typical to-do list, there was a need for a simple reminder system specifically focused on checking and managing personal belongings before leaving.',
@@ -97,7 +103,7 @@ const CERTIFICATES = [
   { id: 9, title: 'CCNA:Introducing to Network', src: '/sertifikat/ccna.png' },
   { id: 10, title: 'Partner NDG Linux Essentials', src: '/sertifikat/ndg linux.png' },
   { id: 11, title: 'Oracle Database Design', src: '/sertifikat/databasse design.png' },
- 
+
 
 ];
 
@@ -111,18 +117,51 @@ const TECH_STACK = [
   { name: 'Figma', icon: FaFigma },
   { name: 'Python', icon: FaPython },
   { name: 'Boothstrap', icon: FaBootstrap },
+  { name: 'Supabase', icon: SiSupabase },
+  { name: 'Laravel', icon: SiLaravel },
+  { name: 'MySql', icon: SiMysql },
 ];
 
 const TABS = [
   { id: 'projects', label: 'Projects', icon: '<>' },
+  { id: 'design', label: 'Design Graphic', icon: '🎨' },
   { id: 'certificates', label: 'Certificates', icon: '📜' },
   { id: 'techstack', label: 'Tech Stack', icon: '⚙️' },
+];
+
+const DESIGNS = [
+  { id: 1,  src: '/design/design 1 = poster.png',    category: 'poster' },
+  { id: 2,  src: '/design/design 2 - poster.png',    category: 'poster' },
+  { id: 3,  src: '/design/design 3 - poster.png',    category: 'poster' },
+  { id: 4,  src: '/design/design 4 - poster.png',    category: 'poster' },
+  { id: 5,  src: '/design/design 5 - poster.png',    category: 'poster' },
+  { id: 6,  src: '/design/design 6 - poster.png',    category: 'poster' },
+  { id: 7,  src: '/design/design 7 - story ig.png',  category: 'story' },
+  { id: 8,  src: '/design/design 8 - story ig.png',  category: 'story' },
+  { id: 9,  src: '/design/design 9 - story ig.png',  category: 'story' },
+  { id: 10, src: '/design/design 10 - banner.png',   category: 'banner' },
+  { id: 11, src: '/design/design 11 - poster.png',   category: 'poster' },
+  { id: 12, src: '/design/design 12 - banner.png',   category: 'banner' },
+  { id: 13, src: '/design/design 13 - poster.png',   category: 'poster' },
+  { id: 14, src: '/design/design 14 - banner.png',   category: 'banner' },
+  { id: 15, src: '/design/design 15 - poster.png',   category: 'poster' },
+  { id: 16, src: '/design/design 16 - story ig.png', category: 'story' },
+];
+
+const DESIGN_FILTERS = [
+  { id: 'all', label: 'All' },
+  { id: 'banner', label: 'Banner' },
+  { id: 'poster', label: 'Poster' },
+  { id: 'story', label: 'Story' },
 ];
 
 const Portfolio = () => {
   const [activeTab, setActiveTab] = useState('projects');
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedCert, setSelectedCert] = useState(null);
+  const [selectedDesign, setSelectedDesign] = useState(null);
+  const [designFilter, setDesignFilter] = useState('all');
+  const [designShowAll, setDesignShowAll] = useState(false);
   const setRef = useReveal('is-visible', 0.1, '0px 0px -5% 0px');
 
   return (
@@ -159,6 +198,11 @@ const Portfolio = () => {
                 {tab.id === 'techstack' && (
                   <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                  </svg>
+                )}
+                {tab.id === 'design' && (
+                  <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
                   </svg>
                 )}
               </span>
@@ -240,6 +284,70 @@ const Portfolio = () => {
                 </BorderGlow>
               ))}
             </div>
+          </div>
+        )}
+
+        {/* Design Graphic Tab */}
+        {activeTab === 'design' && (
+          <div className="portfolio__content reveal-tab" key="design-content">
+            <div className="portfolio__design-filters">
+              {DESIGN_FILTERS.map((f) => (
+                <button
+                  key={f.id}
+                  type="button"
+                  className={`portfolio__chip ${designFilter === f.id ? 'portfolio__chip--active' : ''}`}
+                  onClick={() => {
+                    setDesignFilter(f.id);
+                    setDesignShowAll(false);
+                  }}
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
+            <div className="portfolio__design">
+              {DESIGNS
+                .filter((d) => designFilter === 'all' || d.category === designFilter)
+                .slice(0, designShowAll ? undefined : 6)
+                .map((design) => (
+                  <BorderGlow
+                    key={design.id}
+                    className="design-card"
+                    backgroundColor="#0d0d1a"
+                    borderRadius={10}
+                    glowColor="220 80 70"
+                    glowRadius={30}
+                    glowIntensity={1.1}
+                    colors={['#3b82f6', '#6366f1', '#8b5cf6']}
+                    edgeSensitivity={20}
+                  >
+                    <button
+                      type="button"
+                      className="design-card__btn"
+                      onClick={() => setSelectedDesign(design)}
+                      aria-label="Perbesar design"
+                    >
+                      <img
+                        className="design-card__img"
+                        src={encodeURI(design.src)}
+                        alt=""
+                        loading="lazy"
+                      />
+                    </button>
+                  </BorderGlow>
+                ))}
+            </div>
+            {DESIGNS.filter((d) => designFilter === 'all' || d.category === designFilter).length > 6 && (
+              <div className="portfolio__design-more">
+                <button
+                  type="button"
+                  className="portfolio__more-btn"
+                  onClick={() => setDesignShowAll((v) => !v)}
+                >
+                  {designShowAll ? 'Sembunyikan' : 'Lihat lainnya'}
+                </button>
+              </div>
+            )}
           </div>
         )}
 
@@ -359,6 +467,45 @@ const Portfolio = () => {
                 alt={selectedCert.title}
               />
               <div className="cert-lightbox__caption">{selectedCert.title}</div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Design graphic lightbox */}
+      <AnimatePresence>
+        {selectedDesign && (
+          <motion.div
+            className="cert-lightbox"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedDesign(null)}
+          >
+            <button
+              type="button"
+              className="cert-lightbox__close"
+              onClick={() => setSelectedDesign(null)}
+              aria-label="Tutup"
+            >
+              <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <motion.div
+              className="cert-lightbox__box"
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.92 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                className="cert-lightbox__img"
+                src={encodeURI(selectedDesign.src)}
+                alt=""
+              />
+              <div className="cert-lightbox__caption">{selectedDesign.category}</div>
             </motion.div>
           </motion.div>
         )}

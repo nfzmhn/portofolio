@@ -332,6 +332,110 @@
   gap: 1rem;
 }
 
+/* Design Graphic — masonry layout */
+.portfolio__design-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
+.portfolio__chip {
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.82rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.portfolio__chip:hover {
+  color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.portfolio__chip--active {
+  background: linear-gradient(135deg, #053594, #1544A3, #1951C3);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.portfolio__design {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+@media (max-width: 900px) {
+  .portfolio__design { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 540px) {
+  .portfolio__design { grid-template-columns: 1fr; }
+}
+
+.portfolio__design-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.portfolio__more-btn {
+  padding: 0.7rem 2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.portfolio__more-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+}
+
+.design-card {
+  display: block;
+  margin: 0;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.design-card__btn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.design-card__img {
+  width: 100%;
+  height: 260px;
+  display: block;
+  border-radius: 8px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.design-card__btn:hover .design-card__img {
+  transform: scale(1.03);
+}
+
 .tech-card {
   background: #0d0d1a;
   border: 1px solid rgba(255, 255, 255, 0.08);

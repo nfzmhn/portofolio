@@ -1,38 +1,45 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './Navbar.css';
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [scrolled, setScrolled] = useState(false);
+  const tickingRef = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-  
-      const sections = ['home', 'about', 'portfolio', 'process', 'contact'];
-      const offset = 120;
-  
-      let currentSection = 'home';
-  
-      for (const id of sections) {
-        const el = document.getElementById(id);
-  
-        if (el) {
-          const sectionTop = el.getBoundingClientRect().top;
-  
-          if (sectionTop <= offset) {
-            currentSection = id;
+      if (tickingRef.current) return;
+      tickingRef.current = true;
+      requestAnimationFrame(() => {
+        const nextScrolled = window.scrollY > 20;
+        setScrolled((prev) => (prev !== nextScrolled ? nextScrolled : prev));
+
+        const sections = ['home', 'about', 'portfolio', 'process', 'contact'];
+        const offset = 120;
+
+        let currentSection = 'home';
+
+        for (const id of sections) {
+          const el = document.getElementById(id);
+
+          if (el) {
+            const sectionTop = el.getBoundingClientRect().top;
+
+            if (sectionTop <= offset) {
+              currentSection = id;
+            }
           }
         }
-      }
-  
-      setActiveSection(currentSection);
+
+        setActiveSection((prev) => (prev !== currentSection ? currentSection : prev));
+        tickingRef.current = false;
+      });
     };
-  
-    window.addEventListener('scroll', handleScroll);
-  
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
     handleScroll();
-  
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
